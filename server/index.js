@@ -33,7 +33,6 @@ app.get('/', (req, res)=>{
 
 app.use("/api/v1", user);
 app.use("/api/v1/Upload", upload);
-// console.log("hello");
 
 
 app.listen(PORT, ()=>{

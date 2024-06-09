@@ -2,5 +2,11 @@
   "dependencies": {
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1"
+  },
+  "scripts": {
+    "build":"react-scripts build",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
