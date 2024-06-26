@@ -46,7 +46,7 @@ const SignupForm = ({setIsLoggedIn}) => {
         console.log(formData);
         
         dispatch(signup(formData, navigate));
-        toast.success("Account Created!");
+        // toast.success("Account Created!");
 
         // navigate("/Dashboard");
     }

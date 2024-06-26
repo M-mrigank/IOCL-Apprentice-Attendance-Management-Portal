@@ -6,6 +6,10 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { useState } from 'react';
 import { BsSearch } from "react-icons/bs";
+import preloader from "../../assets/preloader-unscreen.gif";
+import DetailApprentice from './DetailApprentice';
+import './apprentice.css';
+import { ImCross } from "react-icons/im";
 
 const Apprentice = () => {
     const location=useLocation();
@@ -21,6 +25,9 @@ const Apprentice = () => {
     const [selectData, setSelectData] = useState(record);
     const [fsName, setFsName] = useState("");
     const [lsName, setLsName] = useState("");
+
+    const [isVisible, setIsVisible]=useState(false);
+    const [enlargeData, setEnlargeData]=useState(null);
 
     useEffect(() => {
         setSelectData(record);
@@ -47,10 +54,20 @@ const Apprentice = () => {
       });
       setSelectData(filteredData);
     }
+
+    const enlarge=(data)=>{
+      setEnlargeData(data);
+      setIsVisible(true);
+    }
+
+    const closeEnlarge=()=>{
+      setIsVisible(false);
+      setEnlargeData(null);
+    }
           
   return (
-    <div className='w-full'>
-      <div className="flex justify-between mt-8 max-w-max">
+    <div className='w-[100%] h-[100%] '>
+      <div className="flex justify-between mt-8 max-w-max relative">
                 <form className='flex gap-x-4 justify-between w-full' onSubmit={submitHandler}>
                   <div className='flex gap-x-5'>
                     <label className='w-full flex justify-between' htmlFor='firstName'>
@@ -77,7 +94,7 @@ const Apprentice = () => {
             <div className='w-full mt-3 mb-4'>
               <p className="text-center font-semibold ">Apprentice Record</p>
             </div>
-            <Table className='border shadow-2xl'>
+            <Table className='border shadow-2xl flex flex-col'>
                 <Thead className='border'>
                     <Tr className='border bg-orange-100'>
                         <Th className='p-2 border pl-5 pr-5'>
@@ -98,9 +115,18 @@ const Apprentice = () => {
                     </Tr>
                 </Thead>
                 <Tbody className='border'>
+                  {
+                    selectData===null && 
+                    <div className='max-w-max mx-auto flex flex-col justify-center align-center h-56'>
+                      <div className='flex justify-center align-center'>
+                        <img src={preloader} alt="IOCL"/>
+                      </div>
+                      <h1 className='font-semibold text-2xl'>Loading..</h1>
+                    </div>
+                  }
                 {
                   selectData?.map((apprentice, index)=>(
-                    <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer">
+                    <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={()=>enlarge(apprentice)}>
                       <Td className='text-center p-2 border font-semibold text-zinc-900 pl-5 pr-5'>
                         {index+1}
                       </Td>
@@ -121,6 +147,15 @@ const Apprentice = () => {
                 }
                 </Tbody>
             </Table>
+            {
+              isVisible && 
+              <div className='fixed top-0 left-0 w-[100%] h-[100%] flex justify-content-center align-centr absolute max-w-max mx-auto' class="enlarge">
+                <div  className="popup">
+                  <div  onClick={closeEnlarge} className='float-right p-3'><ImCross /></div>
+                  <DetailApprentice user={enlargeData} role={"apprentice"}/>
+                </div>
+              </div>
+            }
         </div>
       </div>
   )

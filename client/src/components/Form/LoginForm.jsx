@@ -30,7 +30,7 @@ const LoginForm = ({setIsLoggedIn}) => {
         console.log(formData);
 
         setIsLoggedIn(true);
-        toast.success("Logged In");
+        // toast.success("Logged In");
 
         dispatch(login(formData, navigate));
         console.log(formData);

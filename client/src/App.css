@@ -11,10 +11,13 @@ body {
     scrollbar-width: auto;
     scrollbar-color: #afb2bf;
     background-size: cover;
+    background-attachment: fixed;
   }
 
 .bg-img{
     /* background-image: url(./assets/background1.jpg); */
+    background-size: cover;
+    background-attachment: fixed;
     background-size: cover;
     /* background-blend-mode: lighten; */
 }
