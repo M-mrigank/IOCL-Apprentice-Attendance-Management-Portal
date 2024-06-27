@@ -2,10 +2,10 @@ const mongoose=require("mongoose");
 
 const userSchema=new mongoose.Schema({
 
-    user_id:{
-        type:String,
-        unique:true,
-    },
+    // user_id:{
+    //     type:String,
+    //     unique:true,
+    // },
 
     firstName:{
         type:String,
@@ -39,63 +39,63 @@ const userSchema=new mongoose.Schema({
         default:Date.now,
     },
 
-    department:{
-        type:String,
-    },
-    face_encoding:{
-        type:[Number]
-    }
+    // department:{
+    //     type:String,
+    // },
+    // face_encoding:{
+    //     type:[Number]
+    // }
 
 });
 
-const attendanceSchema=mongoose.Schema({
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required:true,
-    },
-    date:{
-        type:Date,
-        required:true,
-    },
-    timeIn:{
-        type:Date,
-    },
-    timeOut:{
-        type:Date,
-    },
-    status:{
-        type:String,
-        enum:["present", "absent", "late"],
-        default:"absent",
-    }
-});
+// const attendanceSchema=mongoose.Schema({
+//     userId:{
+//         type:mongoose.Schema.Types.ObjectId,
+//         ref: "user",
+//         required:true,
+//     },
+//     date:{
+//         type:Date,
+//         required:true,
+//     },
+//     timeIn:{
+//         type:Date,
+//     },
+//     timeOut:{
+//         type:Date,
+//     },
+//     status:{
+//         type:String,
+//         enum:["present", "absent", "late"],
+//         default:"absent",
+//     }
+// });
 
-const leaveSchema=new mongoose.Schema({
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: "user",
-        required:true,
-    },
-    leaveStartDate:{
-        type:Date,
-        required:true,
-    },
-    leaveEndDate:{
-        type:Date,
-        required:true,
-    },
-    reason:{
-        type:String,
-    },
-    status:{
-        type:String,
-        enum:["pending", "approved", "rejected"],
-        default:"pending"
-    },
-});
+// const leaveSchema=new mongoose.Schema({
+//     userId:{
+//         type:mongoose.Schema.Types.ObjectId,
+//         ref: "user",
+//         required:true,
+//     },
+//     leaveStartDate:{
+//         type:Date,
+//         required:true,
+//     },
+//     leaveEndDate:{
+//         type:Date,
+//         required:true,
+//     },
+//     reason:{
+//         type:String,
+//     },
+//     status:{
+//         type:String,
+//         enum:["pending", "approved", "rejected"],
+//         default:"pending"
+//     },
+// });
 
 module.exports=mongoose.model("user", userSchema);
 
-module.exports=mongoose.model("attendance", attendanceSchema);
-module.exports=mongoose.model("leave", leaveSchema);
+// module.exports=mongoose.model("attendance", attendanceSchema);
+// module.exports=mongoose.model("leave", leaveSchema);
