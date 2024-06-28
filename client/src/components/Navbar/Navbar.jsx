@@ -55,16 +55,16 @@ const Navbar = (props) => {
         <nav className="hidden md:block">
               <ul className="flex justify-center items-center gap-x-6">
                 <li>
-                  <Link to="" className="font-semibold text-xl hover">Home</Link>
+                  <Link to="" className="font-semibold text-xl hover focus:bg-orange-200 hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg">Home</Link>
                 </li>
 
                 <li>
-                  <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl">About</Link>
+                  <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
                 </li>
                 <li>
                   {
                     User &&
-                      <Link className="font-semibold text-xl" to="/Dashboard">Dashboard</Link>
+                      <Link className="font-semibold text-xl focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
                   }
                 </li>
               </ul>
