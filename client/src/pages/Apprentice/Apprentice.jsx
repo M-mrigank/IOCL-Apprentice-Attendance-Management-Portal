@@ -100,13 +100,13 @@ const Apprentice = () => {
                         <Th className='p-2 border pl-5 pr-5'>
                             S.N
                         </Th>
-                        <Th className='p-2 border pl-10 pr-10'>
+                        <Th className='p-2 border pl-10 pr-7'>
                             First Name
                         </Th>
                         <Th className='p-2 border pl-10 pr-10'>
                             Last Name
                         </Th>
-                        <Th className='p-2 pl-12 pr-12'>
+                        <Th className='p-2 pl-12 pr-36'>
                             Email ID
                         </Th>
                         <Th className='p-2 border pl-12 pr-10'>
@@ -127,7 +127,7 @@ const Apprentice = () => {
                 {
                   selectData?.map((apprentice, index)=>(
                     <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={()=>enlarge(apprentice)}>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-5 pr-5'>
+                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-5 pr-9'>
                         {index+1}
                       </Td>
                       <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-10'>
@@ -139,7 +139,7 @@ const Apprentice = () => {
                       <Td className='text-center p-2 border font-semibold text-zinc-900 pl-12 pr-12'>
                         {apprentice?.email}
                       </Td>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-10'>
+                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-16'>
                         {apprentice?.registeredOn?.split('T')[0]}
                       </Td>
                     </Tr>
