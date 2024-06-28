@@ -59,12 +59,12 @@ const Navbar = (props) => {
                 </li>
 
                 <li>
-                  <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
+                  <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
                 </li>
                 <li>
                   {
                     User &&
-                      <Link className="font-semibold text-xl focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
+                      <Link className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
                   }
                 </li>
               </ul>
