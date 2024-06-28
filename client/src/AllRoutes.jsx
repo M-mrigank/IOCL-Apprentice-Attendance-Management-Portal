@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 
 const AllRoutes = ({setIsLoggedIn}) => {
   return (
-    <div className='w-11/12 mx-auto h-[2000px]'>
+    <div>
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/Auth" element={<Auth/>}/>

@@ -22,11 +22,11 @@ const Home = () => {
 
 
   return (
-    <div className="flex flex-col w-4/5 gap-y-4 max-w-max mx-auto justify-center align-center h-[100%]">
+    <div className="flex flex-col w-11/12 gap-y-4 max-w-maxContent mx-auto items-center justify-center align-center">
 
         {
           isVisible1 && (
-            <div className='max-w-max mx-auto flex flex-col justify-center align-center h-56'>
+            <div className='max-w-max mx-auto flex flex-col justify-center align-center items-center min-h-screen'>
               <div className='flex justify-center align-center'>
                 <img src={preloader} alt="IOCL"/>
               </div>
@@ -35,7 +35,7 @@ const Home = () => {
         }
         {
           isVisible2 && (<>
-            <p className="font-bold text-4xl text-zinc-700 max-w-max mx-auto mt-6">Apprentice and Administration Portal</p>
+            <p className="font-bold text-4xl text-zinc-700 max-w-max mx-auto mt-16">Apprentice and Administration Portal</p>
 
             <p className="font-bold text-4xl text-zinc-500 max-w-max mx-auto mt-7">Welcome Back {
                 user===null? (<></>):(<>

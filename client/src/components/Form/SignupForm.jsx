@@ -43,7 +43,7 @@ const SignupForm = ({setIsLoggedIn}) => {
         setIsLoggedIn(true);
         formData.role=accountType;
 
-        console.log(formData);
+        // console.log(formData);
         
         dispatch(signup(formData, navigate));
         // toast.success("Account Created!");

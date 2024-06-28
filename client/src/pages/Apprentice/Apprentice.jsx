@@ -13,14 +13,14 @@ import { ImCross } from "react-icons/im";
 
 const Apprentice = () => {
     const location=useLocation();
-    console.log(location);
+    // console.log(location);
 
     let apprenticeRecord=useSelector((state)=>(state.apprenticeRecordReducer));
-    console.log("apprentice page", apprenticeRecord);
-    console.log(apprenticeRecord.allApprenticeDetails)
+    // console.log("apprentice page", apprenticeRecord);
+    // console.log(apprenticeRecord.allApprenticeDetails)
 
     var record=apprenticeRecord.allApprenticeDetails;
-    console.log(typeof(record));
+    // console.log(typeof(record));
 
     const [selectData, setSelectData] = useState(record);
     const [fsName, setFsName] = useState("");
@@ -149,7 +149,7 @@ const Apprentice = () => {
             </Table>
             {
               isVisible && 
-              <div className='fixed top-0 left-0 w-[100%] h-[100%] flex justify-content-center align-centr absolute max-w-max mx-auto' class="enlarge">
+              <div className='fixed top-0 left-0 w-[100%] min-h-screen flex justify-content-center align-centr absolute max-w-max mx-auto' class="enlarge">
                 <div  className="popup">
                   <div  onClick={closeEnlarge} className='float-right p-3'><ImCross /></div>
                   <DetailApprentice user={enlargeData} role={"apprentice"}/>

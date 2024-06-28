@@ -2,18 +2,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-nav{
-    min-height: 50px;
-    max-height: 5rem;
-    width: 100%;
-    margin: 0 auto;
-    box-shadow: 0px 4px 3px rgba(206, 203, 203, 0.6);
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    background-color: rgb(236, 228, 228);
-}
 
 .navbar{
     height: 100%;
