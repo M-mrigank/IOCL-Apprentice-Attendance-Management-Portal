@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Apprentice from "../Apprentice/Apprentice"
 import DetailApprentice from '../Apprentice/DetailApprentice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const User=useSelector((state)=>(state.currentUserReducer));
+  const location=useLocation();
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(location.pathname=='/Dashboard' && User==null){
+      navigate('/');
+    }
+  }, [])
+  
 
   console.log("dashboard page user ", User);
 
