@@ -56,7 +56,7 @@ const LoginForm = ({setIsLoggedIn}) => {
                     showPassword?(<IoEyeOutline fontSize={24} fill='#595959'/>):(<FaRegEyeSlash fontSize={24} fill='#595959'/>)
                 }
             </span>
-            <Link to="#">
+            <Link to="/forgot-password">
                 <p className='max-w-max text-xs mt-1 text-sky-500 ml-auto'>
                     Forgot Password
                 </p>
