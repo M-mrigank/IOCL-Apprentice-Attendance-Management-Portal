@@ -33,8 +33,8 @@ app.get('/', (req, res)=>{
 
 app.use(
     cors({
-        // origin:"http://localhost:3000",
-        origin:"https://iocl-frontend.vercel.app/",
+        origin:"http://localhost:3000",
+        // origin:"https://iocl-frontend.vercel.app/",
         credentials:true
     })
 );
