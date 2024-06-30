@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.gif'
 import './Navbar.css';
 import { CiLogin } from "react-icons/ci";
@@ -17,6 +17,8 @@ const Navbar = (props) => {
 
   const dispatch=useDispatch();
   const navigate=useNavigate();
+
+  const location=useLocation();
 
 
   var User=useSelector((state)=>(state.currentUserReducer));
@@ -63,7 +65,7 @@ const Navbar = (props) => {
                 </li>
                 <li>
                   {
-                    User &&
+                    (User && location.pathname!=='/verify-email') &&
                       <Link className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
                   }
                 </li>
@@ -72,7 +74,7 @@ const Navbar = (props) => {
         </nav>
 
         <div className="hidden items-center gap-x-4 md:flex">
-          {User===null &&
+          {(User===null && location.pathname!=='/verify-email') &&
             <div className='flex justify-between align-center gap-3'>
               
               <Link to={"/Login"} className="font-semibold text-lg flex justify-between align-center">
@@ -88,7 +90,7 @@ const Navbar = (props) => {
             
           }
           {
-            User &&
+            (User && location.pathname!=='/verify-email') &&
 
             <div className="flex justify-between align-center gap-3">
 

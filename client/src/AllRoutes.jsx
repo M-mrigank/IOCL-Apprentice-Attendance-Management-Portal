@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Dashboard from './pages/Dashboard/Dashboard';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
+import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 
 const AllRoutes = ({setIsLoggedIn}) => {
   return (
@@ -22,6 +23,8 @@ const AllRoutes = ({setIsLoggedIn}) => {
             <Route path="/Signup" element={<Signup setIsLoggedIn={setIsLoggedIn}/>}/>
 
             <Route path="/Dashboard" element={<Dashboard/>}/>
+
+            <Route path="/verify-email" element={<VerifyEmail/>}/>
         </Routes>
     </div>
   )

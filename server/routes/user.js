@@ -1,12 +1,14 @@
 const express=require("express");
 const router=express.Router();
 
-const {login, signup}=require("../controllers/Auth");
+const {login, signup, sendOTP}=require("../controllers/Auth");
 const {auth, isAdmin, isApprentice}=require("../middlewares/auth");
 const { getAllApprentice, updateProfile } = require("../controllers/ApprenticeCollection");
+const {resetPasswordToken, resetPassword}=require("../controllers/ResetPassword");
 
 router.post("/Login", login);
 router.post("/Signup", signup);
+router.post("/sendOtp", sendOTP);
 
 router.get("/Test", auth, (req, res)=>{
     res.json({
@@ -30,5 +32,8 @@ router.get("/Admin", auth, isAdmin, (req, res)=>{
 
 router.get('/Record', getAllApprentice);
 router.patch('update/:id', auth, updateProfile);
+
+router.post("/reset-password-token", resetPasswordToken);
+router.post("/reset-password", resetPassword);
 
 module.exports = router;

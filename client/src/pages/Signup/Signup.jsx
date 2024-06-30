@@ -1,5 +1,5 @@
 import React from 'react'
-import signupImg from '../../assets/signup.avif';
+import signupImg from '../../assets/ioclSignup-removebg-preview.png';
 import Template from '../../components/Template/Template';
 
 const Signup = ({setIsLoggedIn}) => {

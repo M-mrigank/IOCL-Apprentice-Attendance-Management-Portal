@@ -1,12 +1,85 @@
 const bcrypt=require("bcrypt");
 const User=require("../model/User");
+const OTP=require("../model/OTP");
 const jwt=require("jsonwebtoken");
 require("dotenv").config();
+const otpGenerator=require("otp-generator");
+
+exports.sendOTP=async(req, res)=>{
+    try{
+        const {email, firstName, lastName, password, confirmPassword, role}=req.body;
+        console.log("email : ", email);
+        console.log("req body : ", req.body);
+
+        const checkUserPresent=await User.findOne({email});
+
+        if(checkUserPresent){
+            return res.status(400).json({
+                success:false,
+                message:"User already exist"
+            });
+        }
+
+        var otp=otpGenerator.generate(6, {
+            upperCaseAlphabets:false,
+            lowerCaseAlphabets:false,
+            specialChars:false
+        });
+
+        console.log("otp generated ", otp);
+
+        let result=await OTP.findOne({otp:otp});
+
+        while(result){
+            otp=otpGenerator.generate(6, {
+                upperCaseAlphabets:false,
+                lowerCaseAlphabets:false,
+                specialChars:false
+            });
+            result=await OTP.findOne({otp:otp});
+        }
+
+        console.log("otp generated final: ", otp);
+
+        const otpPayload={email, otp};
+        const payload={
+            firstName, lastName, email, password, confirmPassword, role, otp
+        };
+
+        const otpBody=await OTP.create(otpPayload);
+        console.log(otpBody);
+
+        return res.status(200).json({
+            success:true,
+            otp,
+            payload,
+            message:"OTP sent successfully"
+        });
+    }
+    catch(error){
+        console.log("error with otp: ", error);
+        return res.status(500).json({
+            success:false,
+            message:error.message
+        });
+    }
+}
 
 exports.signup=async(req, res)=>{
     try{
-        const {firstName, lastName, email, password, confirmPassword, role}=req.body;
-        console.log(firstName, lastName, email, password, confirmPassword, role);
+        const {firstName, lastName, email, password, confirmPassword, role,
+            otp
+        }=req.body;
+        console.log(firstName, lastName, email, password, confirmPassword, role,
+            otp
+        );
+
+        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
+            return res.status(403).json({
+                success:false,
+                message:"All fields are required",
+            });
+        }
 
         const existingUser=await User.findOne({email});
         if(existingUser){
@@ -19,6 +92,23 @@ exports.signup=async(req, res)=>{
             return res.status(400).json({
                 success:false,
                 message:"Passwords does not match",
+            });
+        }
+
+        const recentOtp1=await OTP.find({email}).sort({createdAt:-1}).limit(1);
+        const recentOtp=recentOtp1[0].otp;
+        console.log("recent otp ", recentOtp);
+
+        if(recentOtp.length==0){
+            return res.status(400).json({
+                success:false,
+                message:"Otp not found"
+            });
+        }
+        else if(otp!==recentOtp){
+            return res.status(400).json({
+                success:false,
+                message:"Invalid Otp"
             });
         }
 
@@ -118,7 +208,7 @@ exports.login=async(req, res)=>{
             // console.log(oldUser);
             user=user.toObject();
             user.password=undefined;
-            user.confirmPassword=undefined;
+            // user.confirmPassword=undefined;
             user.token=token;
             console.log(user);
                 

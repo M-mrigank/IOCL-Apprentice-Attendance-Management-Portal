@@ -31,6 +31,14 @@ app.get('/', (req, res)=>{
     });
 });
 
+app.use(
+    cors({
+        // origin:"http://localhost:3000",
+        origin:"https://iocl-frontend.vercel.app/",
+        credentials:true
+    })
+);
+
 app.use("/api/v1", user);
 app.use("/api/v1/Upload", upload);
 

@@ -39,6 +39,13 @@ const userSchema=new mongoose.Schema({
         default:Date.now,
     },
 
+    token:{
+        type:String,
+    },
+    resetPasswordExpires:{
+        type:Date,
+    }
+
     // department:{
     //     type:String,
     // },

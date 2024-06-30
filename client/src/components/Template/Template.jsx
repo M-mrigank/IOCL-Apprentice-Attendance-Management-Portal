@@ -8,10 +8,7 @@ const Template = ({title, desc1, desc2, image, formtype, setIsLoggedIn}) => {
   return (
     <div className="flex justify-between align-center pt-24 h-full w-4/5 max-w-[1160px] mx-auto py-12 gap-x-12 gap-y-0 max-[620px]:flex-wrap">
         <div className="relative w-4/5 max-w-[450px] pt-14">
-
-            <img src={frame} alt="Frame" width={558} height={400} loading='lazy' className='h-[90%]'/>
-
-            <img src={image} alt="Frame" width={554} height={581} loading='lazy' className='absolute top-6 left-6 h-[80%]'/>
+            <img src={image} alt="Frame" width={560} height={581} loading='lazy' className='absolute top-6 left-6 h-full w-full'/>
 
         </div>
         <div className="w-4/5 max-w-[450px] mx-0">

@@ -3,8 +3,9 @@ import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import {signup} from "../../actions/auth"
+import {sendotp, signup} from "../../actions/auth"
 import {useDispatch} from "react-redux";
+import preloader from "../../assets/preloader-unscreen.gif";
 import { fetchAllApprentice } from '../../actions/apprentice';
 
 const SignupForm = ({setIsLoggedIn}) => {
@@ -45,13 +46,16 @@ const SignupForm = ({setIsLoggedIn}) => {
 
         // console.log(formData);
         
-        dispatch(signup(formData, navigate));
+        dispatch(sendotp(formData, navigate));
+        
+        // dispatch(signup(formData, navigate));
         // toast.success("Account Created!");
 
         // navigate("/Dashboard");
     }
   return (
     <div className=''>
+
         <div className='flex p-1 gap-x-1 my-6 rounded-full max-w-max'>
             <button className={`${accountType==="apprentice"? "text-neutral-700 font-semibold bg-slate-300":"bg-transparent text-slate-950"} py-2 px-5 rounded-full transition-all duration-200`} onClick={()=>setAccountType("apprentice")} >
                 Apprentice
