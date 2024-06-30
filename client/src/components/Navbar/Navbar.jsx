@@ -46,7 +46,7 @@ const Navbar = (props) => {
 
 
   return (
-    <div className='flex justify-evenly items-center h-20 bg-stone-300 w-[100%]'>
+    <div className='flex justify-evenly items-center h-20 bg-stone-300 w-[100%] shadow-2xl'>
 
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
             <Link to="/">
