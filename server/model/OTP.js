@@ -20,6 +20,8 @@ const OTPSchema=new mongoose.Schema({
 
 async function sendEmailVerification(email, otp){
     try{
+        console.log("otp after schema above model->", otp);
+        console.log("email after schema above model->", email);
         const mailResponse=await mailSender(email, "Email verification by IOCL", emailTemplate(otp));
 
         console.log("Email send successfully: ", mailResponse);

@@ -21,7 +21,7 @@ const mailSender=async(email, title, body)=>{
         return info;
     }
     catch(error){
-        console.log(error.message);
+        console.log("nodemailer error: ",error.message);
     }
 }
 
