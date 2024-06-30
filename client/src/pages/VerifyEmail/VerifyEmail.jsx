@@ -78,7 +78,7 @@ const VerifyEmail = () => {
                     <p>Back To Signup</p>
                 </Link>
             </div>
-            <button className='w-full rounded-[8px] font-medium bg-orange-300 px-[12px] py-[8px] mt-4 hover:bg-orange-400 hover:transition hover:duration-150' onClick={()=>dispatch(sendotp(signupData.payload))}>Resend OTP</button>
+            <button className='w-full rounded-[8px] font-medium bg-orange-300 px-[12px] py-[8px] mt-4 hover:bg-orange-400 hover:transition hover:duration-150' onClick={()=>dispatch(sendotp(signupData.payload, navigate))}>Resend OTP</button>
         </div>
         </form>
     </div>

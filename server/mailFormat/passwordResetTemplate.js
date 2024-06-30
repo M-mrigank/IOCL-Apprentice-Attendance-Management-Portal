@@ -47,7 +47,7 @@ exports.passwordReset=(email, firstName)=>{
     <body>
         <div class="container">
             <a href="https://iocl-frontend.vercel.app">
-            // <a href="https://localhost:3000">
+            <!-- <a href="https://localhost:3000"> -->
                 <img src="https://res.cloudinary.com/deb3uqqw7/image/upload/v1719679928/StorageFiles/lpztungtwfdm0qgosxzz.png" height="100" width="140" alt="IOCL">
             </a>
             <div class="message">Email Verification || IOCL - Project</div>
