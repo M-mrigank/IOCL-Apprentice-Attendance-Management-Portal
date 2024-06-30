@@ -1,5 +1,4 @@
 import React from 'react'
-import frame from '../../assets/frame.jpg'
 import SignupForm from '../Form/SignupForm'
 import LoginForm from '../Form/LoginForm'
 import { FcGoogle } from "react-icons/fc";
