@@ -22,8 +22,8 @@ exports.resetPasswordToken=async(req, res)=>{
             resetPasswordExpires:Date.now()+5*60*1000,
         }, {new:true});
 
-        const url=`http://localhost:3000/update-password/${token}`;
-        // const url=`https://iocl-frontend.vercel.app/update-password/${token}`;
+        // const url=`http://localhost:3000/update-password/${token}`;
+        const url=`https://iocl-frontend.vercel.app/update-password/${token}`;
 
         await mailSender(email, "Password Reset Link", `Link to reset password for IOCL Apprentice and Administration Portal: ${url}`);
 
