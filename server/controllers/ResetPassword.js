@@ -4,8 +4,11 @@ const bcrypt=require("bcrypt");
 const crypto=require("crypto");
 
 exports.resetPasswordToken=async(req, res)=>{
+    // console.log("req body pass reset: ", req.body);
     try{
-        const email=req.body.email;
+        const email=req.body.authData;
+
+        // console.log("reached backend email: ", email);
 
         const user=await User.findOne({email: email});
         if(!user){

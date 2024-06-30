@@ -17,3 +17,6 @@ export const sendOtp=(authData)=>API.post('/api/v1/sendOtp', authData);
 
 export const fetchAllApprenticeRecord=()=>API.get('/api/v1/Record');
 export const updateProfile=(id, updatedProfile)=>API.patch(`/update/${id}`);
+
+export const resetPasswordToken=(authData)=>API.post('/api/v1/reset-password-token', authData);
+export const resetPassword=(authData)=>API.post('/api/v1/reset-password', authData);

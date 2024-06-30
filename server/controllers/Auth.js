@@ -8,8 +8,8 @@ const otpGenerator=require("otp-generator");
 exports.sendOTP=async(req, res)=>{
     try{
         const {email, firstName, lastName, password, confirmPassword, role}=req.body;
-        console.log("email : ", email);
-        console.log("req body : ", req.body);
+        // console.log("email : ", email);
+        // console.log("req body : ", req.body);
 
         const checkUserPresent=await User.findOne({email});
 
@@ -26,7 +26,7 @@ exports.sendOTP=async(req, res)=>{
             specialChars:false
         });
 
-        console.log("otp generated ", otp);
+        // console.log("otp generated ", otp);
 
         let result=await OTP.findOne({otp:otp});
 
@@ -39,7 +39,7 @@ exports.sendOTP=async(req, res)=>{
             result=await OTP.findOne({otp:otp});
         }
 
-        console.log("otp generated final: ", otp);
+        // console.log("otp generated final: ", otp);
 
         const otpPayload={email, otp};
         const payload={
@@ -47,7 +47,7 @@ exports.sendOTP=async(req, res)=>{
         };
 
         const otpBody=await OTP.create(otpPayload);
-        console.log(otpBody);
+        // console.log(otpBody);
 
         return res.status(200).json({
             success:true,
@@ -70,9 +70,9 @@ exports.signup=async(req, res)=>{
         const {firstName, lastName, email, password, confirmPassword, role,
             otp
         }=req.body;
-        console.log(firstName, lastName, email, password, confirmPassword, role,
-            otp
-        );
+        // console.log(firstName, lastName, email, password, confirmPassword, role,
+        //     otp
+        // );
 
         if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
             return res.status(403).json({
@@ -97,7 +97,7 @@ exports.signup=async(req, res)=>{
 
         const recentOtp1=await OTP.find({email}).sort({createdAt:-1}).limit(1);
         const recentOtp=recentOtp1[0].otp;
-        console.log("recent otp ", recentOtp);
+        // console.log("recent otp ", recentOtp);
 
         if(recentOtp.length==0){
             return res.status(400).json({
@@ -135,7 +135,7 @@ exports.signup=async(req, res)=>{
         let user=await User.create({
             firstName, lastName, email, password:hashedPasswords, confirmPassword:hashedConfirmPassword, role
         });
-        console.log("user->", user);
+        // console.log("user->", user);
         
         // console.log("user1 ",user);
         const payload={
@@ -210,7 +210,7 @@ exports.login=async(req, res)=>{
             user.password=undefined;
             // user.confirmPassword=undefined;
             user.token=token;
-            console.log(user);
+            // console.log(user);
                 
             // console.log("here");
             const options1={

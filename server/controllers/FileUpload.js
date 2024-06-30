@@ -5,10 +5,10 @@ exports.localFileUpload=async (req, res)=>{
     try{
         const file=req.files.file;
 
-        console.log("file is here", file);
+        // console.log("file is here", file);
 
         let path=__dirname+"/files/"+Date.now()+`.${file.name.split('.')[1]}`;
-        console.log("Path ", path);
+        // console.log("Path ", path);
 
         file.mv(path, (err)=>{
             console.log(err);
@@ -30,7 +30,7 @@ function isFileTypeSupported(type, supportedTypes){
 
 async function uploadFileToCloudinary(file, folder, quality){
     const options={folder};
-    console.log(file.tempFilePath);
+    // console.log(file.tempFilePath);
     options.resource_type="auto";
     if(quality){
         options.quality=quality;
@@ -41,13 +41,13 @@ async function uploadFileToCloudinary(file, folder, quality){
 exports.imageUpload=async(req, res)=>{
     try{
         const {firstName, lastName, tags, email}=req.body;
-        console.log(firstName, lastName, tags, email);
+        // console.log(firstName, lastName, tags, email);
 
         const file=req.files.imageFile;
-        console.log(file);
+        // console.log(file);
         const supportedTypes=["jpg", "jpeg", "png"];
         const fileType=file.name.split('.')[1].toLowerCase();
-        console.log(fileType);
+        // console.log(fileType);
         if(!isFileTypeSupported(fileType, supportedTypes)){
             return res.status(400).json({
                 success:false,
@@ -55,7 +55,7 @@ exports.imageUpload=async(req, res)=>{
             });
         }
         const response=await uploadFileToCloudinary(file, "StorageFiles");
-        console.log("response", response);
+        // console.log("response", response);
         const fileData=await File.create({
             firstName, 
             lastName,
@@ -63,7 +63,7 @@ exports.imageUpload=async(req, res)=>{
             email,
             imageUrl:response.secure_url,
         });
-        console.log(fileData);
+        // console.log(fileData);
 
         res.json({
             success:true,
@@ -83,7 +83,7 @@ exports.imageUpload=async(req, res)=>{
 exports.videoUpload=async (req, res)=>{
     try{
         const {firstName, lastName, tags, email}=req.body;
-        console.log(firstName, lastName, tags, email);
+        // console.log(firstName, lastName, tags, email);
 
         const file=req.files.videoFile;
 
@@ -98,7 +98,7 @@ exports.videoUpload=async (req, res)=>{
         }
 
         const response=await uploadFileToCloudinary(file, "StorageFiles");
-        console.log(response);
+        // console.log(response);
 
         const fileData=await File.create({
             firstName,
@@ -126,10 +126,10 @@ exports.videoUpload=async (req, res)=>{
 exports.imageSizeReducer=async (req, res)=>{
     try{
         const {firstName, lastName, tags, email}=req.body;
-        console.log(firstName, lastName, tags, email);
+        // console.log(firstName, lastName, tags, email);
 
         const file=req.files.imageFile;
-        console.log(file);
+        // console.log(file);
         const supportedType=["jpg", "jpeg", "png"];
         const fileType=file.name.split('.')[1].toLowerCase();
         if(!isFileTypeSupported(fileType, supportedType)){
@@ -140,7 +140,7 @@ exports.imageSizeReducer=async (req, res)=>{
         };
 
         const response=await uploadFileToCloudinary(file, "StorageFiles", 30);
-        console.log(response);
+        // console.log(response);
 
         const fileData=await File.create({
             firstName,

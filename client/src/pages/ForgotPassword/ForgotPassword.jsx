@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import {useDispatch} from "react-redux";
 import lft from "../../assets/passReset-unscreen.gif";
 import rgt from "../../assets/passReset1-unscreen.gif";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast"
+import { resetPasswordToken } from '../../actions/password';
 
 const ForgotPassword = () => {
     const [sendEmail, setSendEmail] =useState(false);
     const [email, setEmail] = useState("");
 
     const dispatch=useDispatch();
+    const navigate=useNavigate();
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        toast.success("Successfully Reset Password");
+
+        dispatch(resetPasswordToken(email, setSendEmail));
     }
 
   return (

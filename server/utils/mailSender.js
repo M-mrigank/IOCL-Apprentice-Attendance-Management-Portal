@@ -16,7 +16,7 @@ const mailSender=async(email, title, body)=>{
                 pass:process.env.MAIL_PASS,
             }
         });
-        console.log("transporter: ", transporter);
+        // console.log("transporter: ", transporter);
 
         let info=await transporter.sendMail({
             from:"Indian Oil corporation Ltd || Project-Apprentice and Administration Portal",
@@ -24,7 +24,7 @@ const mailSender=async(email, title, body)=>{
             subject:`${title}`,
             html:`${body}`
         });
-        console.log("email ", info);
+        // console.log("email ", info);
 
         return info;
     }
