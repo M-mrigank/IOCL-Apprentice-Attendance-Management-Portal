@@ -13,6 +13,7 @@ export const sendotp=(authData, navigate)=>async(dispatch)=>{
         navigate("/verify-email");
     }catch(error){
         // toast.error("Failed to send OTP");
+        toast.error(error?.response?.data?.message);
         console.log("OTP error: ", error);
     }
 }
@@ -27,6 +28,7 @@ export const signup=(authData, navigate)=>async (dispatch)=>{
         toast.success("Account Created!");
         navigate("/");
     }catch(error){
+        toast.error(error?.response?.data?.message);
         console.log("error ->", error);
     }
 }
@@ -39,6 +41,7 @@ export const login=(authData, navigate)=>async (dispatch)=>{
         toast.success("Logged In");
         navigate('/');
     }catch(error){
+        toast.error(error?.response?.data?.message);
         console.log("error ->",error);
     }
 }

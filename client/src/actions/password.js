@@ -5,7 +5,7 @@ export const resetPasswordToken=(authData, setSendEmail)=>async(dispatch)=>{
     // console.log("reset password token data: ", authData);
     try{
         const {data}=await api.resetPasswordToken({authData});
-        console.log("reset password data from backend: ", data);
+        // console.log("reset password data from backend: ", data);
 
 
         setSendEmail(true);
