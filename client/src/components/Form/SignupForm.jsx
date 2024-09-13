@@ -16,7 +16,8 @@ const SignupForm = ({setIsLoggedIn}) => {
         firstName:"", lastName:"", email:"", password:"", confirmPassword:"", role:""
     });
 
-    const [showPassword, setShowPassword]=useState(false);
+    const [showPassword1, setShowPassword1]=useState(false);
+    const [showPassword2, setShowPassword2]=useState(false);
     const [accountType, setAccountType]=useState("apprentice");
 
     // formData.role=accountType;
@@ -81,27 +82,37 @@ const SignupForm = ({setIsLoggedIn}) => {
                 <input required type="email" name="email" onChange={changeHandler} placeholder="Enter Email Address" value={formData.email} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
             </label>
 
+            <div className="w-full flex flex-col justify-between">
             <div className="w-full flex justify-between gap-x-4">
                 <label className='relative w-full'>
                     <p className='text-[0.875rem] mb-1 leading-[1.375rem] font-semibold'>Create Password<sup className='text-red-600'>*</sup></p>
-                    <input required type={showPassword?("text"):("password")} name="password" onChange={changeHandler} placeholder="Enter Password" value={formData.password} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
+                    <input required type={showPassword1?("text"):("password")} name="password" onChange={changeHandler} placeholder="Enter Password" value={formData.password} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
 
-                    <span onClick={()=>setShowPassword((prev)=>!prev)} className='absolute top-10 right-4 cursor-pointer'>
+                    <span onClick={()=>setShowPassword1((prev)=>!prev)} className='absolute top-10 right-4 cursor-pointer'>
                         {
-                            showPassword?(<IoEyeOutline fill='#595959' fontSize={24}/>):(<FaRegEyeSlash fill='#595959' fontSize={24}/>)
+                            showPassword1?(<IoEyeOutline fill='#595959' fontSize={24}/>):(<FaRegEyeSlash fill='#595959' fontSize={24}/>)
                         }
                     </span>
                 </label>
                 <label className='relative w-full'>
                     <p className='text-[0.875rem] mb-1 leading-[1.375rem] font-semibold'>Confirm Password<sup className='text-red-600'>*</sup></p>
-                    <input required type={showPassword?("text"):("password")}  name="confirmPassword" onChange={changeHandler} placeholder="Confirm Password" value={formData.confirmPassword} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
+                    <input required type={showPassword2?("text"):("password")}  name="confirmPassword" onChange={changeHandler} placeholder="Confirm Password" value={formData.confirmPassword} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
 
-                    <span onClick={()=>setShowPassword((prev)=>!prev)} className='absolute top-10 right-4 cursor-pointer'>
+                    <span onClick={()=>setShowPassword2((prev)=>!prev)} className='absolute top-10 right-4 cursor-pointer'>
                         {
-                            showPassword?(<IoEyeOutline fill='#595959' fontSize={24}/>):(<FaRegEyeSlash fill='#595959' fontSize={24}/>)
+                            showPassword2?(<IoEyeOutline fill='#595959' fontSize={24}/>):(<FaRegEyeSlash fill='#595959' fontSize={24}/>)
                         }
                     </span>
                 </label>
+            </div>
+            <div>
+                <ul class="list-disc ml-5 mt-3">
+                    <li className='text-sm text-slate-500'>Password should be atleast 8 characters long</li>
+                    <li className='text-sm text-slate-500'>Password should contain atleast 1 upper case alphabet</li>
+                    <li className='text-sm text-slate-500'>Password should contain atleast 1 lower case alphabet</li>
+                    <li className='text-sm text-slate-500'>Password should contain atleast 1 special symbol</li>
+                </ul>
+            </div>
             </div>
             <button className='w-full rounded-[8px] font-medium bg-orange-300 px-[12px] py-[8px] mt-4 hover:bg-orange-400 hover:transition hover:duration-150'>
                 Create Account

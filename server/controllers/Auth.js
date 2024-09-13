@@ -11,6 +11,79 @@ exports.sendOTP=async(req, res)=>{
         // console.log("email : ", email);
         // console.log("req body : ", req.body);
 
+        let passlength=password.length;
+        if(passlength<8){
+            return res.status(400).json({
+                success:false,
+                message:"Password length is less than 8 characters!"
+            });
+        }
+
+        let freq=new Map();
+        for(let a of password){
+            freq.set(a, (freq.set(a) || 0)+1);
+        }
+
+        function numpresent(freq){
+            for(let i=0; i<=9; i++){
+                if(freq.has(i))return true;
+            }
+            return false;
+        }
+        // console.log("number present", numpresent(freq));
+
+        if(numpresent(freq)==false){
+            return res.status(400).json({
+                success:false,
+                message:"Password should consist of atleast one integer!"
+            })
+        };
+
+        function upperpresent(freq){
+            for(let i='a'; i<='z'; i++){
+                if(freq.has(i))return true;
+            }
+            return false;
+        }
+        // console.log("uppercase present", upperpresent(freq));
+
+        if(upperpresent(freq)==false){
+            return res.status(400).json({
+                success:false,
+                message:"Password should have atleast one uppercase letter!"
+            })
+        };
+
+        function lowerpresent(freq){
+            for(let i='a'; i<='z'; i++){
+                if(freq.has(i))return true;
+            }
+            return false;
+        }
+        // console.log("lower case present", lowerpresent(freq));
+
+        if(lowerpresent(freq)==false){
+            return res.status(400).json({
+                success:false,
+                message:"Password should have atleast one lowercase letter!"
+            })
+        };
+
+        function specialpresent(freq){
+            if(freq.has('!') || freq.has('@') || freq.has('#') || freq.has('$') || freq.has('%') || freq.has('^') || freq.has('&') || freq.has('*') || freq.has('(') || freq.has(')') || freq.has('-') || freq.has('_') || freq.has('=') || freq.has('+') || freq.has(`'\'`) || freq.has('|') || freq.has('[') || freq.has(']') || freq.has('{') || freq.has('}') || freq.has(';') || freq.has(':') || freq.has('/') || freq.has('?') || freq.has('.') || freq.has('>'))return true;
+            return false;
+        }
+        // console.log("special symbol present", specialpresent(freq));
+
+        if(specialpresent(freq)==false){
+            return res.status(400).json({
+                success:false,
+                message:"Password should have atleast one special symbol!"
+            })
+        };
+
+
+
         const checkUserPresent=await User.findOne({email});
 
         if(checkUserPresent){
