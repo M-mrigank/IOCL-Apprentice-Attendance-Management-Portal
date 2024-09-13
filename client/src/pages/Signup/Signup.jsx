@@ -6,8 +6,6 @@ const Signup = ({setIsLoggedIn}) => {
   return (
         <Template
         title="Welcome Back!"
-        desc1=""
-        desc2=""
         image={signupImg}
         formtype="signup"
         setIsLoggedIn={setIsLoggedIn}

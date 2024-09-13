@@ -12,11 +12,6 @@ const Template = ({title, desc1, desc2, image, formtype, setIsLoggedIn}) => {
         </div>
         <div className="w-4/5 max-w-[450px] mx-0">
             <h1 className='font-bold text-[1.875rem] leading-[2.3rem]'>{title}</h1>
-            <p className='text-[1.125rem] leading-[1.625rem] mt-4 flex'>
-                <span className='font-semibold'>{desc1}</span>
-                <br/>
-                <span className='text-orange-400'>{desc2}</span>
-            </p>
 
             {formtype==="signup"?(<SignupForm setIsLoggedIn={setIsLoggedIn}/>):(<LoginForm setIsLoggedIn={setIsLoggedIn}/>)}
             <div className='flex flex-row w-full items-center my-4 gap-x-2'>
