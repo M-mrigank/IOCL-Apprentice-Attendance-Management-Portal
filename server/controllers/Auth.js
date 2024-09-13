@@ -8,8 +8,10 @@ const otpGenerator=require("otp-generator");
 exports.sendOTP=async(req, res)=>{
     try{
         const {email, firstName, lastName, password, confirmPassword, role}=req.body;
-        // console.log("email : ", email);
-        // console.log("req body : ", req.body);
+        console.log("email : ", email);
+        console.log("req body : ", req.body);
+
+        console.log("password is", password);
 
         let passlength=password.length;
         if(passlength<8){
@@ -23,10 +25,13 @@ exports.sendOTP=async(req, res)=>{
         for(let a of password){
             freq.set(a, (freq.set(a) || 0)+1);
         }
+        console.log("frequency array: ", freq);
 
         function numpresent(freq){
             for(let i=0; i<=9; i++){
-                if(freq.has(i))return true;
+                let c=i.toString();
+                console.log(`frequency of ${i} if ${freq.has(c)}`);
+                if(freq.has(c))return true;
             }
             return false;
         }
@@ -40,8 +45,9 @@ exports.sendOTP=async(req, res)=>{
         };
 
         function upperpresent(freq){
-            for(let i='a'; i<='z'; i++){
-                if(freq.has(i))return true;
+            for(let i=65; i<=90; i++){
+                let c=String.fromCharCode(i);
+                if(freq.has(c))return true;
             }
             return false;
         }
@@ -54,20 +60,24 @@ exports.sendOTP=async(req, res)=>{
             })
         };
 
+        console.log("nxt");
+
         function lowerpresent(freq){
-            for(let i='a'; i<='z'; i++){
-                if(freq.has(i))return true;
+            for(let i=97; i<=122; i++){
+                let c=String.fromCharCode(i);
+                if(freq.has(c))return true;
             }
             return false;
         }
         // console.log("lower case present", lowerpresent(freq));
-
+        
         if(lowerpresent(freq)==false){
             return res.status(400).json({
                 success:false,
                 message:"Password should have atleast one lowercase letter!"
             })
         };
+        console.log("nxt");
 
         function specialpresent(freq){
             if(freq.has('!') || freq.has('@') || freq.has('#') || freq.has('$') || freq.has('%') || freq.has('^') || freq.has('&') || freq.has('*') || freq.has('(') || freq.has(')') || freq.has('-') || freq.has('_') || freq.has('=') || freq.has('+') || freq.has(`'\'`) || freq.has('|') || freq.has('[') || freq.has(']') || freq.has('{') || freq.has('}') || freq.has(';') || freq.has(':') || freq.has('/') || freq.has('?') || freq.has('.') || freq.has('>'))return true;
@@ -143,9 +153,9 @@ exports.signup=async(req, res)=>{
         const {firstName, lastName, email, password, confirmPassword, role,
             otp
         }=req.body;
-        // console.log(firstName, lastName, email, password, confirmPassword, role,
-        //     otp
-        // );
+        console.log(firstName, lastName, email, password, confirmPassword, role,
+            otp
+        );
 
         if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
             return res.status(403).json({
