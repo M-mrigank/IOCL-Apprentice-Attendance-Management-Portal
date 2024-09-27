@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../../assets/logo.gif'
 import './Navbar.css';
@@ -14,6 +14,8 @@ import {useNavigate} from "react-router-dom";
 const Navbar = (props) => {
   // let isLoggedin=props.isLoggedIn;
   // let setIsLoggedIn=props.setIsLoggedIn;
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const dispatch=useDispatch();
   const navigate=useNavigate();
@@ -44,34 +46,63 @@ const Navbar = (props) => {
   // console.log("user name",User?.user?.firstName?.charAt(0));
   // console.log(isLoggedin);
 
+  const toggleNavbar=()=>{
+    setIsOpen(!isOpen);
+  }
+
 
   return (
     <div className='flex justify-evenly items-center h-20 bg-stone-300 w-[100%] shadow-2xl'>
 
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
-            <Link to="/">
-              <img src={logo} alt="logo"  width={160} height={32} className="h-14" loading='lazy'/>
-            </Link>
+        <Link to="/">
+          <img src={logo} alt="logo"  width={160} height={32} className="h-14" loading='lazy'/>
+        </Link>
 
-      
+    
+        <button className="text-white block md:hidden z-20" onClick={toggleNavbar}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6h.01M12 12h.01M12 18h.01" />
+          </svg>
+        </button>
+
         <nav className="hidden md:block">
-              <ul className="flex justify-center items-center gap-x-6">
-                <li>
-                  <Link to="" className="font-semibold text-xl hover focus:bg-orange-200 hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg">Home</Link>
-                </li>
 
-                <li>
-                  <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
-                </li>
-                <li>
-                  {
-                    (User && location.pathname!=='/verify-email') &&
-                      <Link className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
-                  }
-                </li>
-              </ul>
+
+          <ul className={`flex justify-center items-center gap-x-6`}>
+            <li>
+              <Link to="" className="font-semibold text-xl hover focus:bg-orange-200 hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg">Home</Link>
+            </li>
+
+            <li>
+              <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
+            </li>
+            <li>
+              {
+                (User && location.pathname!=='/verify-email') &&
+                  <Link className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
+              }
+            </li>
+          </ul>
+
 
         </nav>
+        
+        <ul className={`md:hidden ${isOpen?'block':'hidden'}`}>
+          <li>
+            <Link to="" className="font-semibold text-xl hover focus:bg-orange-200 hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg focus:rounded-xl focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg">Home</Link>
+          </li>
+
+          <li>
+            <Link to="https://iocl.com/barauni-refinery" className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg">About</Link>
+          </li>
+          <li>
+            {
+              (User && location.pathname!=='/verify-email') &&
+                <Link className="font-semibold text-xl focus:rounded-xl focus:bg-orange-200 focus:pl-3 focus:pr-3 focus:pt-2 focus:pb-2 focus:shadow-lg  hover:rounded hover:bg-orange-100 hover:pl-3 hover:pr-3 hover:pt-2 hover:pb-2 hover:shadow-lg" to="/Dashboard">Dashboard</Link>
+            }
+          </li>
+        </ul>
 
         <div className="hidden items-center gap-x-4 md:flex">
           {(User===null && location.pathname!=='/verify-email') &&
