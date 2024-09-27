@@ -3,6 +3,13 @@ import { useSelector } from 'react-redux'
 import logo from "../../assets/iocl-nobg.png"
 import rhino from "../../assets/rhino1.png"
 import preloader from "../../assets/preloader-unscreen.gif";
+import workers from "../../assets/att3.webp";
+import refinery from "../../assets/refinery.png";
+import security from "../../assets/att4.webp";
+import verify from "../../assets/verify.webp"
+import part1 from "../../assets/a1.png";
+import part2 from "../../assets/att2.png";
+import check from "../../assets/att8.gif";
 
 const Home = () => {
 
@@ -10,6 +17,8 @@ const Home = () => {
 
   const [isVisible1, setIsVisible1]=useState(true);
   const [isVisible2, setIsVisible2]=useState(false);
+  const [currImg, setCurrImg]=useState(0);
+  const [dir, setDir]=useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -19,7 +28,28 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const direction=[
+    'translate-x-full', 
+    '-translate-x-full', 
+    'translate-y-full',  
+    '-translate-y-full',
+  ]
+  const images=[
+    workers,
+    refinery,
+    security,
+    verify
+  ]
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * direction.length);
+      setDir(direction[randomIndex].class);
+      setCurrImg((prevIndex) => (prevIndex + 1) % images.length);
+    }, 7000); 
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex flex-col w-11/12 gap-y-4 max-w-maxContent mx-auto items-center justify-center align-center">
@@ -54,6 +84,31 @@ const Home = () => {
 
               <div className='flex justify-center align-center'>
                 <img src={rhino} alt="Rhino"/>
+              </div>
+            </div>
+            <div className='pt-10 flex flex-col justify-center items-center w-full'>
+              <span className='text-lime-700 font-bold text-2xl'>Real-Time Attendance for a Smarter Workforce!</span>
+
+              <div className="pt-4 relative w-[50%] h-96 overflow-hidden">
+                <div  className='w-28 z-20 absolute z-20'><img src={check}/></div>
+                <div
+                  className={`absolute w-full h-full transition-transform duration-700 ease-in-out transform ${currImg > 0 ? direction[(currImg - 1) % direction.length].class : ''}`}
+                >
+                  <img
+                    src={images[(currImg - 1 + images.length) % images.length]}
+                    alt={`Slide ${(currImg - 1 + images.length) % images.length + 1}`}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div
+                  className={`absolute w-full h-full transition-transform duration-700 ease-in-out transform ${dir} ${currImg === 0 ? 'translate-x-0' : ''}`}
+                >
+                  <img
+                    src={images[currImg]}
+                    alt={`Slide ${currImg + 1}`}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
               </div>
             </div>
           </>)
