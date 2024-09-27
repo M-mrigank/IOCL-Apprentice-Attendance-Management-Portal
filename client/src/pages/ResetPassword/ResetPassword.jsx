@@ -41,11 +41,11 @@ const ResetPassword = () => {
     <div className="w-11/12 mx-auto flex flex-col items-center">
         <h1 className='font-bold text-3xl mt-16 text-slate-700'>Reset Password</h1>
         <p className='text-slate-400 mt-3'>Create your new password</p>
-        <div className='flex'>
-            <div className='w-[60%]'>
+        <div className='flex w-full justify-center items-center'>
+            <div className='w-[30%] items-center'>
                 <img src={resetImg} alt="Password Reset" className="w-full h-full object-cover block"/>
             </div>
-            <form className='flex flex-col w-[40%] justify-center items-center gap-y-4' onSubmit={handleSubmit}>
+            <form className='flex flex-col w-[30%] justify-center items-center gap-y-4' onSubmit={handleSubmit}>
                 <label className='relative w-full'>
                     <p className='text-[0.875rem] mb-1 leading-[1.375rem] font-semibold'>Create Password<sup className='text-red-600'>*</sup></p>
                         <input required type={passVisible?("text"):("password")} name="password" onChange={changeHandler} placeholder="Enter Password" value={formData.password} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
@@ -66,6 +66,14 @@ const ResetPassword = () => {
                             }
                         </span>
                     </label>
+                    <div>
+                        <ul class="list-disc ml-5 mt-3">
+                            <li className='text-sm text-slate-500'>Password should be atleast 8 characters long</li>
+                            <li className='text-sm text-slate-500'>Password should contain atleast 1 upper case alphabet</li>
+                            <li className='text-sm text-slate-500'>Password should contain atleast 1 lower case alphabet</li>
+                            <li className='text-sm text-slate-500'>Password should contain atleast 1 special symbol</li>
+                        </ul>
+                    </div>
                     <button type="submit" className='w-full rounded-[8px] font-medium bg-orange-300 px-[12px] py-[8px] mt-4 hover:bg-orange-400 hover:transition hover:duration-150'>
                         Reset Password
                     </button>

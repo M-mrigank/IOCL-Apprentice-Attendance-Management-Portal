@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
-import ApprenticeList from './ApprenticeList';
 import { useSelector } from 'react-redux';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
@@ -80,58 +79,55 @@ const Apprentice = ({popUpData}) => {
             <div className='w-full mt-3 mb-4'>
               <p className="text-center font-semibold ">Apprentice Record</p>
             </div>
-            <Table className='border shadow-2xl flex flex-col'>
-                <Thead className='border'>
-                    <Tr className='border bg-orange-100'>
-                        <Th className='p-2 border pl-5 pr-5'>
-                            S.N
-                        </Th>
-                        <Th className='p-2 border pl-10 pr-7'>
-                            First Name
-                        </Th>
-                        <Th className='p-2 border pl-10 pr-10'>
-                            Last Name
-                        </Th>
-                        <Th className='p-2 pl-12 pr-36'>
-                            Email ID
-                        </Th>
-                        <Th className='p-2 border pl-12 pr-10'>
-                            Registered On
-                        </Th>
-                    </Tr>
-                </Thead>
-                <Tbody className='border'>
-                  {
-                    selectData===null && 
-                    <div className='max-w-max mx-auto flex flex-col justify-center align-center h-56'>
-                      <div className='flex justify-center align-center'>
-                        <img src={preloader} alt="IOCL"/>
-                      </div>
-                      <h1 className='font-semibold text-2xl'>Loading..</h1>
+            <Table className='border shadow-2xl table-auto w-full'>
+              <Thead className='border'>
+                <Tr className='border bg-orange-100'>
+                  <Th className='p-2 border text-center'>
+                    S.N
+                  </Th>
+                  <Th className='p-2 border text-center'>
+                    First Name
+                  </Th>
+                  <Th className='p-2 border text-center'>
+                    Last Name
+                  </Th>
+                  <Th className='p-2 border text-center'>
+                    Email ID
+                  </Th>
+                  <Th className='p-2 border text-center'>
+                    Registered On
+                  </Th>
+                </Tr>
+              </Thead>
+              <Tbody className='border'>
+                {selectData === null && (
+                  <div className='max-w-max mx-auto flex flex-col justify-center align-center h-56'>
+                    <div className='flex justify-center align-center'>
+                      <img src={preloader} alt="IOCL" />
                     </div>
-                  }
-                {
-                  selectData?.map((apprentice, index)=>(
-                    <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={()=>popUpData(apprentice)}>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-5 pr-9'>
-                        {index+1}
-                      </Td>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-10'>
-                        {apprentice?.firstName}
-                      </Td>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-10'>
-                        {apprentice?.lastName}
-                      </Td>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-12 pr-12'>
-                        {apprentice?.email}
-                      </Td>
-                      <Td className='text-center p-2 border font-semibold text-zinc-900 pl-10 pr-16'>
-                        {apprentice?.registeredOn?.split('T')[0]}
-                      </Td>
-                    </Tr>
-                  ))
-                }
-                </Tbody>
+                    <h1 className='font-semibold text-2xl'>Loading..</h1>
+                  </div>
+                )}
+                {selectData?.map((apprentice, index) => (
+                  <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={() => popUpData(apprentice)}>
+                    <Td className='text-center p-2 border font-semibold text-zinc-900'>
+                      {index + 1}
+                    </Td>
+                    <Td className='text-center p-2 border font-semibold text-zinc-900'>
+                      {apprentice?.firstName}
+                    </Td>
+                    <Td className='text-center p-2 border font-semibold text-zinc-900'>
+                      {apprentice?.lastName}
+                    </Td>
+                    <Td className='text-center p-2 border font-semibold text-zinc-900'>
+                      {apprentice?.email}
+                    </Td>
+                    <Td className='text-center p-2 border font-semibold text-zinc-900'>
+                      {apprentice?.registeredOn?.split('T')[0]}
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
             </Table>
         </div>
       </div>

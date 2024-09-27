@@ -4,11 +4,8 @@ import logo from "../../assets/iocl-nobg.png"
 import rhino from "../../assets/rhino1.png"
 import preloader from "../../assets/preloader-unscreen.gif";
 import workers from "../../assets/att3.webp";
-import refinery from "../../assets/refinery.png";
 import security from "../../assets/att4.webp";
 import verify from "../../assets/verify.webp"
-import part1 from "../../assets/a1.png";
-import part2 from "../../assets/att2.png";
 import check from "../../assets/att8.gif";
 
 const Home = () => {
@@ -36,7 +33,6 @@ const Home = () => {
   ]
   const images=[
     workers,
-    refinery,
     security,
     verify
   ]
@@ -87,26 +83,26 @@ const Home = () => {
               </div>
             </div>
             <div className='pt-10 flex flex-col justify-center items-center w-full'>
-              <span className='text-lime-700 font-bold text-2xl'>Real-Time Attendance for a Smarter Workforce!</span>
+              <span className='text-slate-700 italic font-bold text-2xl'>Real-Time Attendance for a Smarter Workforce!</span>
 
-              <div className="pt-4 relative w-[50%] h-96 overflow-hidden">
+              <div className="rounded-lg shadow-2xl pt-4 relative w-[50%] h-96 overflow-hidden">
                 <div  className='w-28 z-20 absolute z-20'><img src={check}/></div>
                 <div
-                  className={`absolute w-full h-full transition-transform duration-700 ease-in-out transform ${currImg > 0 ? direction[(currImg - 1) % direction.length].class : ''}`}
+                  className={`rounded-lg absolute w-full h-full transition-transform duration-700 ease-in-out transform ${currImg > 0 ? direction[(currImg - 1) % direction.length].class : ''}`}
                 >
                   <img
                     src={images[(currImg - 1 + images.length) % images.length]}
                     alt={`Slide ${(currImg - 1 + images.length) % images.length + 1}`}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full rounded-lg"
                   />
                 </div>
                 <div
-                  className={`absolute w-full h-full transition-transform duration-700 ease-in-out transform ${dir} ${currImg === 0 ? 'translate-x-0' : ''}`}
+                  className={`rounded-lg absolute w-full h-full transition-transform duration-700 ease-in-out transform ${dir} ${currImg === 0 ? 'translate-x-0' : ''}`}
                 >
                   <img
                     src={images[currImg]}
                     alt={`Slide ${currImg + 1}`}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full rounded-lg"
                   />
                 </div>
               </div>
