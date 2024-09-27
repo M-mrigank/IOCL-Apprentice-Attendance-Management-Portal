@@ -9,9 +9,8 @@ import { BsSearch } from "react-icons/bs";
 import preloader from "../../assets/preloader-unscreen.gif";
 import DetailApprentice from './DetailApprentice';
 import './apprentice.css';
-import { ImCross } from "react-icons/im";
 
-const Apprentice = () => {
+const Apprentice = ({popUpData}) => {
     const location=useLocation();
     // console.log(location);
 
@@ -25,9 +24,6 @@ const Apprentice = () => {
     const [selectData, setSelectData] = useState(record);
     const [fsName, setFsName] = useState("");
     const [lsName, setLsName] = useState("");
-
-    const [isVisible, setIsVisible]=useState(false);
-    const [enlargeData, setEnlargeData]=useState(null);
 
     useEffect(() => {
         setSelectData(record);
@@ -53,16 +49,6 @@ const Apprentice = () => {
           return matchesFirstName && matchesLastName;
       });
       setSelectData(filteredData);
-    }
-
-    const enlarge=(data)=>{
-      setEnlargeData(data);
-      setIsVisible(true);
-    }
-
-    const closeEnlarge=()=>{
-      setIsVisible(false);
-      setEnlargeData(null);
     }
           
   return (
@@ -126,7 +112,7 @@ const Apprentice = () => {
                   }
                 {
                   selectData?.map((apprentice, index)=>(
-                    <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={()=>enlarge(apprentice)}>
+                    <Tr key={index} className="border rounded hover:bg-sky-100 cursor-pointer" onClick={()=>popUpData(apprentice)}>
                       <Td className='text-center p-2 border font-semibold text-zinc-900 pl-5 pr-9'>
                         {index+1}
                       </Td>
@@ -147,15 +133,6 @@ const Apprentice = () => {
                 }
                 </Tbody>
             </Table>
-            {
-              isVisible && 
-              <div className='fixed top-0 left-0 w-[100%] min-h-screen flex justify-content-center align-centr absolute max-w-max mx-auto' class="enlarge">
-                <div  className="popup">
-                  <div  onClick={closeEnlarge} className='float-right p-3'><ImCross /></div>
-                  <DetailApprentice user={enlargeData} role={"apprentice"}/>
-                </div>
-              </div>
-            }
         </div>
       </div>
   )
