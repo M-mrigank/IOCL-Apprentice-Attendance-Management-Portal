@@ -19,6 +19,7 @@ const SignupForm = ({setIsLoggedIn}) => {
     const [showPassword1, setShowPassword1]=useState(false);
     const [showPassword2, setShowPassword2]=useState(false);
     const [accountType, setAccountType]=useState("apprentice");
+    let bg=document.querySelector("#app");
 
     // formData.role=accountType;
 
@@ -58,10 +59,18 @@ const SignupForm = ({setIsLoggedIn}) => {
     <div className=''>
 
         <div className='flex p-1 gap-x-1 my-6 rounded-full max-w-max'>
-            <button className={`${accountType==="apprentice"? "text-neutral-700 font-semibold bg-slate-300":"bg-transparent text-slate-950"} py-2 px-5 rounded-full transition-all duration-200`} onClick={()=>setAccountType("apprentice")} >
+            <button className={`${accountType==="apprentice"? "text-neutral-700 font-semibold bg-slate-300":"bg-transparent text-slate-950"} py-2 px-5 rounded-full transition-all duration-200`} onClick={()=>{
+                setAccountType("apprentice"); 
+                if(bg.classList.length>0){
+                    bg.classList.remove("bg-slate-400");
+                };
+            }} >
                 Apprentice
             </button>
-            <button className={`${accountType==="admin"? "text-neutral-700 font-semibold bg-slate-300":"bg-transparent text-slate-950"} py-2 px-5 rounded-full transition-all duration-200`} onClick={()=>setAccountType("admin")} >
+            <button className={`${accountType==="admin"? "text-neutral-700 font-semibold bg-slate-300":"bg-transparent text-slate-950"} py-2 px-5 rounded-full transition-all duration-200`} onClick={()=>{
+                setAccountType("admin");
+                bg.classList.add("bg-slate-400"); 
+            }} >
                 Admin
             </button>
         </div>
@@ -106,7 +115,7 @@ const SignupForm = ({setIsLoggedIn}) => {
                 </label>
             </div>
             <div>
-                <ul class="list-disc ml-5 mt-3">
+                <ul className={`list-disc ml-5 mt-3 ${accountType==="admin"?'bg-white rounded-lg p-2':''}`}>
                     <li className='text-sm text-slate-500'>Password should be atleast 8 characters long</li>
                     <li className='text-sm text-slate-500'>Password should contain atleast 1 upper case alphabet</li>
                     <li className='text-sm text-slate-500'>Password should contain atleast 1 lower case alphabet</li>

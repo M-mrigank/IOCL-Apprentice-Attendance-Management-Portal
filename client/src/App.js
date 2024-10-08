@@ -20,7 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-img w-screen min-h-screen flex flex-col bg-gradient-to-r from-slate-300">
+      <div id="app" className="bg-img w-screen min-h-screen flex flex-col bg-gradient-to-r from-slate-300">
           <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
           <div className="flex-grow pb-20">
             <AllRoutes setIsLoggedIn={setIsLoggedIn}/>
