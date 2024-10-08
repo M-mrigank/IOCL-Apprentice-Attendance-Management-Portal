@@ -115,7 +115,7 @@ const SignupForm = ({setIsLoggedIn}) => {
                 </label>
             </div>
             <div>
-                <ul className={`list-disc ml-5 mt-3 ${accountType==="admin"?'bg-white rounded-lg p-2':''}`}>
+                <ul className={`list-disc ml-5 mt-3 bg-white rounded-lg p-2`}>
                     <li className='text-sm text-slate-500'>Password should be atleast 8 characters long</li>
                     <li className='text-sm text-slate-500'>Password should contain atleast 1 upper case alphabet</li>
                     <li className='text-sm text-slate-500'>Password should contain atleast 1 lower case alphabet</li>
