@@ -17,6 +17,11 @@ const Home = () => {
   const [currImg, setCurrImg]=useState(0);
   const [dir, setDir]=useState('');
 
+  let bg=document.querySelector("#app");
+  if(bg && bg.classList.length>0 && user!==null && user?.user?.accountType!=="admin"){
+    bg.classList.remove("bg-slate-400");
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible1(false);

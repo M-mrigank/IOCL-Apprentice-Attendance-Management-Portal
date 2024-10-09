@@ -15,6 +15,10 @@ const LoginForm = ({setIsLoggedIn}) => {
     });
 
     const [showPassword, setShowPassword]=useState(false);
+    let bg=document.querySelector("#app");
+    if(bg.classList.length>0){
+        bg.classList.remove("bg-slate-400");
+    }
 
     function changeHandler(event) {
         setFormData((prevData)=>(
