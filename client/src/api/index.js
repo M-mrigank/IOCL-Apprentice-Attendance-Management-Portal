@@ -12,6 +12,8 @@ API.interceptors.request.use((req)=>{
 
 export const logIn=(authData)=>API.post('/api/v1/Login', authData);
 export const signUp=(authData)=>API.post('/api/v1/Signup', authData);
+export const signinGoogle=(authData)=>API.post('/api/v1/Signup', authData);
+export const loginGoogle=(authData)=>API.post('/api/v1/Login', authData);
 
 export const sendOtp=(authData)=>API.post('/api/v1/sendOtp', authData);
 

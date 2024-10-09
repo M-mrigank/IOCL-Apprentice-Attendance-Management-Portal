@@ -150,20 +150,54 @@ exports.sendOTP=async(req, res)=>{
 
 exports.signup=async(req, res)=>{
     try{
-        const {firstName, lastName, email, password, confirmPassword, role,
+        let {firstName, lastName, email, password, confirmPassword, role,
             otp
         }=req.body;
-        console.log(firstName, lastName, email, password, confirmPassword, role,
-            otp
-        );
+        // console.log(firstName, lastName, email, password, confirmPassword, role, otp);
+        
+        let {name}=req.body;
+        // console.log(name);
 
-        if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
-            return res.status(403).json({
-                success:false,
-                message:"All fields are required",
-            });
+        if(name){
+            const [first, ...second]=name.split(' ');
+            const sec=second.join(' ');
+            firstName=first;
+            lastName=sec;
+            password=`${firstName}`;
+            confirmPassword=`${firstName}`;
+            if(!lastName){lastName=firstName;}
         }
 
+        if(email){
+            const emailpart=email.split('@')[-1];
+            if(!role){
+                (emailpart==="indianoil.in")?role="admin":role="apprentice";
+            }
+        }
+        
+        if(!name){
+            if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
+                return res.status(403).json({
+                    success:false,
+                    message:"All fields are required",
+                });
+            }
+        }
+        else{
+            if(!firstName || !lastName || !email || !password || !confirmPassword){
+                return res.status(403).json({
+                    success:false,
+                    message:"All fields are required",
+                });
+            }
+        }
+        
+        if(role==="admin" && emailpart!=="indianoil.in"){
+            return res.status(403).json({
+                success:false,
+                message:"Cannot Signup without valid Admin EmailID !",
+            })
+        }
         const existingUser=await User.findOne({email});
         if(existingUser){
             return res.status(400).json({
@@ -178,21 +212,23 @@ exports.signup=async(req, res)=>{
             });
         }
 
-        const recentOtp1=await OTP.find({email}).sort({createdAt:-1}).limit(1);
-        const recentOtp=recentOtp1[0].otp;
-        // console.log("recent otp ", recentOtp);
+        if(!name){
+            const recentOtp1=await OTP.find({email}).sort({createdAt:-1}).limit(1);
+            const recentOtp=recentOtp1[0].otp;
+            // console.log("recent otp ", recentOtp);
 
-        if(recentOtp.length==0){
-            return res.status(400).json({
-                success:false,
-                message:"Otp not found"
-            });
-        }
-        else if(otp!==recentOtp){
-            return res.status(400).json({
-                success:false,
-                message:"Invalid Otp"
-            });
+            if(recentOtp.length==0){
+                return res.status(400).json({
+                    success:false,
+                    message:"Otp not found"
+                });
+            }
+            else if(otp!==recentOtp){
+                return res.status(400).json({
+                    success:false,
+                    message:"Invalid Otp"
+                });
+            }
         }
 
         let hashedPasswords, hashedConfirmPassword;
@@ -259,7 +295,11 @@ exports.signup=async(req, res)=>{
 
 exports.login=async(req, res)=>{
     try{
-        const {email, password}=req.body;
+        let {email, password, name}=req.body;
+
+        if(name){
+            password=name;
+        }
 
         // console.log("login data: ", email, password);
 

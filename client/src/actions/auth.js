@@ -33,6 +33,20 @@ export const signup=(authData, navigate)=>async (dispatch)=>{
     }
 }
 
+export const signinWithGoogle=(authData, navigate)=>async(dispatch)=>{
+    // console.log("google: ", authData);
+    try{
+        const {data}=await api.signinGoogle(authData);
+        dispatch({type:'AUTH', data});
+        dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))));
+        toast.success("Logged In");
+        navigate("/");
+    }catch(error){
+        toast.error(error?.response?.data?.message);
+        console.log("error google-> ", error);
+    }
+}
+
 export const login=(authData, navigate)=>async (dispatch)=>{
     try{
         const {data}=await api.logIn(authData);
@@ -43,5 +57,18 @@ export const login=(authData, navigate)=>async (dispatch)=>{
     }catch(error){
         toast.error(error?.response?.data?.message);
         console.log("error ->",error);
+    }
+}
+
+export const logininWithGoogle=(authData, navigate)=>async (dispatch)=>{
+    try{
+        const {data}=await api.loginGoogle(authData);
+        dispatch({type:'AUTH', data});
+        dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))));
+        toast.success("Logged In");
+        navigate('/');
+    }catch(error){
+        toast.error(error?.response?.data?.message);
+        console.log("login error google-> ", error);
     }
 }

@@ -88,7 +88,7 @@ const SignupForm = ({setIsLoggedIn}) => {
 
             <label className='w-full'>
                 <p className='text-[0.875rem] mb-1 leading-[1.375rem] font-semibold'>Email Address<sup className='text-red-600'>*</sup></p>
-                <input required type="email" name="email" onChange={changeHandler} placeholder="Enter Email Address" value={formData.email} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
+                <input required type="email" name="email" onChange={changeHandler} placeholder={`${accountType === "admin" ? 'Eg:abc@indianoil.in' : 'Eg:abc@gmail.com'}`} value={formData.email} className='rounded-[0.5rem] w-full p-[12px] border ring-1 focus:outline-none focus:border-orange-400 focus:ring-orange-500 focus-ring-1'/>
             </label>
 
             <div className="w-full flex flex-col justify-between">
